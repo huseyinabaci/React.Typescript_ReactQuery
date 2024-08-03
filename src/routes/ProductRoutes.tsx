@@ -14,7 +14,7 @@ export const ProductRoutes: RouteObject[] = [
       element: <PostForm />,
     },
     {
-      path: '/update/:id',
+      path: '/detail/:id',
       element: <UpdateForm />,
     },
   ];

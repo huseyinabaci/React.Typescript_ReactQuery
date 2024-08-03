@@ -5,11 +5,13 @@ import { createProduct } from '../api/api';
 import { Button, Form, Input, Spin } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { Product } from '../types/types';
+import useLanguageStore from '../store/languageStore';
 
 export const PostForm: React.FC = () => {
   const [form] = Form.useForm();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { translations } = useLanguageStore();
 
   const mutation = useMutation({
     mutationFn: createProduct,
@@ -37,7 +39,7 @@ export const PostForm: React.FC = () => {
         </div>
       )}
       <Form form={form} onFinish={onFinish}>
-        <h1>Product Form</h1>
+        <h1>{translations.productAdd}</h1>
         <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input the name!' }]}>
           <Input />
         </Form.Item>
@@ -52,7 +54,7 @@ export const PostForm: React.FC = () => {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" loading={isLoading}>
-            Kaydet
+          {translations.productAdd}
           </Button>
         </Form.Item>
       </Form>

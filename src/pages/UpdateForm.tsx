@@ -5,12 +5,14 @@ import { Button, Form, Input } from 'antd';
 import { Product } from '../types/types';
 import { fetchProduct, updateProduct } from '../api/api';
 import TextArea from 'antd/es/input/TextArea';
+import useLanguageStore from '../store/languageStore';
 
 export const UpdateForm: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { translations } = useLanguageStore();
 
   // Fetch product query
   const { data: product, isLoading, isError } = useQuery({
@@ -52,7 +54,7 @@ export const UpdateForm: React.FC = () => {
 
   return (
     <Form form={form} onFinish={onFinish}>
-      <h1>Product Update Form</h1>
+      <h1>{translations.productUpdate}</h1>
       <Form.Item
         label="Name"
         name="name"
@@ -82,7 +84,7 @@ export const UpdateForm: React.FC = () => {
         <Input type="number" />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">Update</Button>
+        <Button type="primary" htmlType="submit">{translations.productUpdate}</Button>
       </Form.Item>
     </Form>
   );

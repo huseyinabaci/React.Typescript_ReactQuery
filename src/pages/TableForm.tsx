@@ -3,10 +3,12 @@ import React from 'react';
 import { deleteProduct, fetchProducts } from '../api/api';
 import { Table, Button, Spin, Popconfirm  } from 'antd';
 import { Link } from "react-router-dom";
+import useLanguageStore from '../store/languageStore';
 
 export const TableForm: React.FC = () => {
 
   const queryClient = useQueryClient();
+  const { translations } = useLanguageStore();
 
   const { data: products, isLoading, isError } = useQuery({
     queryKey: ['products'],
@@ -73,10 +75,10 @@ export const TableForm: React.FC = () => {
 
   return (
     <div>
-      <h1>Product List</h1>
+      <h1>{translations.productList}</h1>
       <Link to="/post">
         <Button style={{ marginBottom: "2rem" }} type="primary">
-          Add Product
+        {translations.productAdd}
         </Button>
       </Link>
       <Table
